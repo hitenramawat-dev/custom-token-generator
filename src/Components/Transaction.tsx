@@ -34,12 +34,11 @@ function TransactionWithSOl() {
             console.error("Transaction failed", error);
         }
     }
-
     return (
         <div>
             <button
                 onClick={() => sendSol()}
-                className="bg-red-900 p-2 text-white"
+                className="bg-gradient-to-r from-[#131212] to-[#c42e27f9] rounded-xl m-2 p-2 text-white"
             >send SOl</button>
         </div>
     )

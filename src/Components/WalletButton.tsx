@@ -10,6 +10,7 @@ import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 
 function WalletButton() {
     const {wallet,connected,disconnect} = useWallet();
+    
     const {setVisible} = useWalletModal();
 
 
@@ -18,7 +19,6 @@ function WalletButton() {
     const lpub = "...." + pubkey?.slice(40,pubkey.length)
 
     const finalPubkey = pub?.concat(lpub);
-    ConnectToWallet(wallet)
 
     //FbmSCivwCLKVuQiBqT8aN6LKLXHHQ365NWBqfLUP5p3y
   return (
@@ -27,7 +27,7 @@ function WalletButton() {
         {
             !connected ? 
             <div>
-                    <button className='' onClick={() => ConnectToWallet(wallet)}>
+                    <button className='bg-red-900' onClick={() => setVisible(true)}>
                         Connect Wallet
                     </button>
             </div> 
@@ -35,7 +35,6 @@ function WalletButton() {
             <div>
               <button>{finalPubkey}</button>
             </div>
-            
         }
    </div>
   )

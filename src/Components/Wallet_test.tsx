@@ -6,26 +6,19 @@ import '@solana/wallet-adapter-react-ui/styles.css';
 
 
 function Wallet_test() {
-    const { connection } = useConnection();
-    const { publicKey, connected, connecting } = useWallet();
-    const [balance, setBalance] = useState<number | null>(null);
-    const [loading, setLoading] = useState(false);
-    const [copied, setCopied] = useState(false);
-
+     const { connection } = useConnection();
+     const { publicKey } = useWallet();
+     const [balance, setBalance] = useState<number | null>(null);
+     
     let LAMPORTS_PER_SO = 1000_000_000;
 
-    useEffect(() => {
-        if (connected && publicKey) {
-            fetchBalance();
-        } else {
-            setBalance(null);
-        }
-    }, [connected, publicKey, connection]);
+   
+   
 
 
     const fetchBalance = async () => {
         if (!publicKey || !connection) return;
-        setLoading(true);
+       
 
         try {
             const balance = await connection.getBalance(publicKey);
@@ -34,20 +27,6 @@ function Wallet_test() {
             console.error('Error fetching balance:', error);
         }
     }
-
-    const copyAddress = async () => {
-        if (publicKey) {
-            await navigator.clipboard.writeText(publicKey.toString());
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        }
-    };
-
-    const formatAddress = (address: string) => {
-        if (!address) return '';
-        const addrStr = address.toString();
-        return `${addrStr.slice(0, 8)}...${addrStr.slice(-8)}`;
-    };
 
 
     return (
@@ -59,7 +38,6 @@ function Wallet_test() {
                     borderRadius: "0.5rem",
                     padding: "0.5rem 1rem",
                 }} />
-                {/* <WalletDisconnectButton className="!bg-gray-500 hover:!bg-gray-600" /> */}
             </div>
             <div>
                 {balance}

@@ -46,32 +46,9 @@ function MetadataToken() {
 
     let mintAddress = new PublicKey("2o38bgKJek5Y2buDBZGVKj8Zfp2sk5QTHueifD3dJDAk")
 
-    // const metadataAccount = async():Promise<PublicKey> => {
-    //     let pubkey  = (await getMetaData(mintAddress)).toString();
-
-    //     return new PublicKey(pubkey);
-    // } 
-
-
 
     const initTransaction  = async() => {
 
-    //     const tx = new Transaction().add(
-    //         createCreateMetadataAccountV2Instruction(
-    //             {
-    //                 metadata: await getMetaData(mintAddress),
-    //                 mint: mintAddress,
-    //                 mintAuthority: payer,       
-    //                 payer: payer,             
-    //                 updateAuthority: payer,
-    //             },{
-    //                 createMetadataAccountArgsV2: {
-    //                   data: metadataData,
-    //                   isMutable: true,
-    //                 }
-    //               }
-    //         )
-    //    )
     const tx = new Transaction().add(
         createCreateMetadataAccountV3Instruction(
           {
@@ -96,7 +73,6 @@ function MetadataToken() {
        const signature = await sendTransaction(tx, connection);
        await connection.confirmTransaction(signature, "confirmed");
        console.log(signature);
-
     }
 
    
@@ -105,7 +81,7 @@ function MetadataToken() {
     <div className="p-4">
     <button
       onClick={initTransaction}
-      className="bg-green-600 text-white px-4 py-2 rounded-md"
+      className="bg-gradient-to-r from-[#131212] to-[#c42e27f9] text-white px-4 py-2 rounded-md"
     >
       Create Metadata
     </button>
