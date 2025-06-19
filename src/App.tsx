@@ -3,6 +3,7 @@ import './App.css'
 import CustomToken from './Components/Custom-token';
 
 import Header from './Components/Header';
+import MetadataToken from './Components/MetadataToken';
 import Transaction from './Components/Transaction';
 
 
@@ -16,6 +17,7 @@ function App() {
        <Transaction/>
        {/* <Wallet_test/> */}
        <CustomToken/>
+       <MetadataToken/>
      </div>
     </>
   )
