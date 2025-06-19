@@ -1,54 +1,95 @@
-# React + TypeScript + Vite
+# MintCraft
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Solana dApp to create custom SPL tokens and send SOL, built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Make Custom Token**: Easily create your own SPL token on the Solana blockchain with custom name, symbol, supply, decimals, and metadata URI.
+- **Send SOL**: Transfer SOL to any Solana wallet address with a simple interface.
+- **Metadata URI Guide**: Step-by-step instructions to create and host your token's metadata for use in wallets and dApps.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 1. Make Custom Token
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Connect your Solana wallet on the Dashboard.
+2. Click on **Create Token**.
+3. Fill in the following details:
+   - **Token Name**: e.g., My Awesome Token
+   - **Token Symbol**: e.g., MAT
+   - **Metadata URI**: Link to your token's metadata JSON (see guide below)
+   - **Initial Supply**: Total number of tokens to mint
+   - **Decimals**: Usually 9 for SPL tokens
+4. Click **Create Token**. Your token will be created on Solana!
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 2. Send SOL
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Connect your Solana wallet on the Dashboard.
+2. Click on **Send SOL**.
+3. Enter the recipient's wallet address and the amount of SOL to send.
+4. Click **Send SOL**. Confirm the transaction in your wallet.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 3. How to Create a Metadata URI (for Custom Tokens)
+
+A metadata URI is a public URL pointing to a JSON file describing your token (name, symbol, image, etc). Follow these steps:
+
+### Step-by-Step Guide
+
+1. **Create Your Token Image**
+   - Design a square image (recommended: 512x512px, PNG or JPG).
+2. **Upload Your Image**
+   - Use a reliable hosting service (IPFS, Arweave, or your own server).
+3. **Create Metadata JSON**
+   - Example:
+     ```json
+     {
+       "name": "My Awesome Token",
+       "symbol": "MAT",
+       "description": "A revolutionary token for the future",
+       "image": "https://your-domain.com/token-image.png",
+       "attributes": [
+         { "trait_type": "Type", "value": "Utility" },
+         { "trait_type": "Network", "value": "Solana" }
+       ],
+       "properties": {
+         "files": [
+           { "uri": "https://your-domain.com/token-image.png", "type": "image/png" }
+         ],
+         "category": "image"
+       }
+     }
+     ```
+4. **Upload Metadata JSON**
+   - Upload the JSON file to the same hosting service.
+5. **Use the JSON URL**
+   - Copy the public URL of your JSON file. Use this as the Metadata URI when creating your token.
+
+### Recommended Hosting Services
+- [Pinata (IPFS)](https://www.pinata.cloud/)
+- [NFT.Storage (IPFS)](https://nft.storage/)
+- [ArDrive (Arweave)](https://ardrive.io/)
+
+### Important Notes
+- Make sure your hosting service provides permanent, public URLs.
+- Test your metadata URL before creating the token.
+- Keep backups of your metadata and images.
+- Consider using IPFS for true decentralization.
+
+---
+
+## Getting Started (Development)
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+Built with ❤️ for the Solana community.
